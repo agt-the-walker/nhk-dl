@@ -3,7 +3,7 @@ Purpose
 
 I wrote these two scripts to download videos from
 [NHK高校講座](http://www.nhk.or.jp/kokokoza/library/index.html), so that I
-could play them offline with mplayer.
+could play them offline with `mplayer`.
 
 Requirements
 ------------
