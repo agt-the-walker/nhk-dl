@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby1.9
+# encoding: UTF-8
+
+require 'mechanize'
+
+##### Configuration
+
+KOTOKOZA_URL='http://www.nhk.or.jp/kokokoza/library/index.html'
+
+##### Classes
+
+class Kokozoka < Mechanize
+  def videos
+    get(KOTOKOZA_URL).links_with(:href => %r{/tv/}).each do |link|
+      handle_section(link)
+    end
+  end
+
+private
+
+  def handle_section(link)
+    transact {
+      section_name = link.text
+      link.click
+      handle_section_tab(section_name)
+
+      page.links_with(:href => %r{^index\d+\.html}).each do |link|
+        link.click
+        handle_section_tab(section_name)
+      end
+    }
+  end
+
+  def handle_section_tab(section_name)
+    page.links_with(:href => %r{/chapter\d+.html}).each do |link|
+      handle_video(section_name, link)
+    end
+  end
+
+  def handle_video(section_name, link)
+    transact {
+      # the following regexp comes from http://www.ruby-forum.com/topic/860528
+      video_name = link.text.sub(/\A[[:space:]]*(.*?)[[:space:]]*\z/, '\1')
+      link.click
+      puts section_name, video_name, page.link_with(:href => /\.asx$/).href, ''
+    }
+  end
+end
+
+##### Main program
+
+Kokozoka.new.videos
