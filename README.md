@@ -30,6 +30,7 @@ Usage
     ./世界史/03 - ローマ帝国　〜平和とそのかげり〜.wmv
     ./世界史/04 - 古代インド　〜仏教とアショーカ王〜.wmv
     ./世界史/05 - 東南アジア世界の形成　〜海を渡ったラーマーヤナ〜.wmv
+    [...]
 
 Note that `nhk-dl` can easily take several days! For this reason, if it gets
 interrupted and you run it again, it will only download missing videos
