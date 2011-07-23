@@ -5,7 +5,7 @@ require 'mechanize'
 
 ##### Configuration
 
-KOTOKOZA_URL='http://www.nhk.or.jp/kokokoza/library/index.html'
+KOTOKOZA_URL = 'http://www.nhk.or.jp/kokokoza/library/index.html'
 
 ##### Classes
 

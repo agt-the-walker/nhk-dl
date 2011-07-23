@@ -6,7 +6,7 @@ require 'fileutils'
 
 ##### Configuration
 
-VIDEO_EXTENSION='.wmv'
+VIDEO_EXTENSION = '.wmv'
 
 ##### Argument parsing
 
