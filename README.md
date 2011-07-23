@@ -35,3 +35,15 @@ Usage
 Note that `nhk-dl` can easily take several days! For this reason, if it gets
 interrupted and you run it again, it will only download missing videos
 (providing you specify the same destination directory).
+
+Limitations
+-----------
+
+`nhk-dl` doesn't download the videos in parallel. If speed is important to you,
+please consider
+[nhk_download.sh](https://github.com/Christoph-D/Tools/blob/master/nhk_download.sh)
+instead.
+
+Error handling could be improved. Right now `nhk-dl` exits as soon as it cannot
+download a video successfully. Moreover, it doesn't clean partially downloaded
+videos.
