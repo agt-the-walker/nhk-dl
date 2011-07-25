@@ -9,11 +9,10 @@ Requirements
 ------------
 
 * [Ruby](http://www.ruby-lang.org/en/) 1.9.2+
-* [mplayer](http://www.mplayerhq.hu/)
+* [mimms](http://savannah.nongnu.org/projects/mimms/) (I used 3.2.1)
 
 The following Ruby [gems](http://rubygems.org/):
 
-* [escape](http://rubygems.org/gems/escape) (I used 0.0.4)
 * [mechanize](http://rubygems.org/gems/mechanize) (I used 2.0.1)
 
 Usage

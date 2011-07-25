@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby1.9
 # encoding: UTF-8
 
-require 'escape'
 require 'fileutils'
 
 ##### Configuration
@@ -40,13 +39,7 @@ STDIN.collect { |line| line.chomp }
                         '%02d - %s' % [counter, video + VIDEO_EXTENSION])
   unless File.exists?(dest_file)
     FileUtils.mkdir_p(dest_dir)
-    cmd = ['mplayer', '-dumpstream', '-dumpfile',
-           Escape.shell_single_word(dest_file),
-           Escape.shell_single_word(streaming_url)].join(' ')
-    if system("#{cmd} >/dev/null 2>&1") and File.size?(dest_file)
-      puts "#{Time.now}: #{dest_file}"
-    else
-      STDERR.puts "#{Time.now}: #{dest_file} FAILED"
+    unless system('mimms', '--quiet', streaming_url, dest_file)
       exit 1
     end
   end
