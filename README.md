@@ -13,7 +13,8 @@ Requirements
 
 The following Ruby [gems](http://rubygems.org/):
 
-* [mechanize](http://rubygems.org/gems/mechanize) (I used 2.0.1)
+* [mechanize](http://rubygems.org/gems/mechanize) (I used 2.0.1 and 2.5.1).
+Note that Ubuntu 12.04's `libwww-mechanize-ruby1.9.1` is too old (1.0.0-1).
 
 Usage
 -----
