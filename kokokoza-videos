@@ -5,13 +5,13 @@ require 'mechanize'
 
 ##### Configuration
 
-KOTOKOZA_URL = 'http://www.nhk.or.jp/kokokoza/library/index.html'
+KOKOKOZA_URL = 'http://www.nhk.or.jp/kokokoza/library/index.html'
 
 ##### Classes
 
-class Kokozoka < Mechanize
+class Kokokoza < Mechanize
   def videos
-    get(KOTOKOZA_URL).links_with(:href => %r{/tv/}).each do |link|
+    get(KOKOKOZA_URL).links_with(:href => %r{/tv/}).each do |link|
       handle_section(link)
     end
   end
@@ -49,4 +49,4 @@ end
 
 ##### Main program
 
-Kokozoka.new.videos
+Kokokoza.new.videos
