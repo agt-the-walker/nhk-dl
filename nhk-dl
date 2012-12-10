@@ -34,7 +34,7 @@ STDIN.collect { |line| line.chomp }
   end
   counter += 1
 
-  dest_dir = File.join(DEST_DIR, section)
+  dest_dir = File.join(DEST_DIR, section.gsub('/', '／'))
   dest_file = File.join(dest_dir,
                         '%02d - %s' % [counter, video + VIDEO_EXTENSION])
   unless File.exists?(dest_file)
