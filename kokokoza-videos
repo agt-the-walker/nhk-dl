@@ -5,7 +5,7 @@ require 'mechanize'
 
 ##### Configuration
 
-KOKOKOZA_URL = 'http://www.nhk.or.jp/kokokoza/library/index.html'
+KOKOKOZA_URL = 'http://www.nhk.or.jp/kokokoza/library/index_2011.html'
 
 ##### Classes
 
