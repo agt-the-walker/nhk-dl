@@ -17,8 +17,6 @@ end
 
 ##### Main program
 
-saved_section, counter = nil, nil
-
 STDIN.collect { |line| line.chomp }
      .chunk { |line| (not line.empty?) || nil }
      .each do |_, lines|
@@ -28,15 +26,8 @@ STDIN.collect { |line| line.chomp }
          .sub('/kokokoza/metafiles/', '/wm2/kokokoza-mov/streaming/')
          .sub(/\.asx$/, VIDEO_EXTENSION)
 
-  if section != saved_section
-    saved_section = section
-    counter = 0
-  end
-  counter += 1
-
   dest_dir = File.join(DEST_DIR, section.gsub('/', '／'))
-  dest_file = File.join(dest_dir,
-                        '%02d - %s' % [counter, video + VIDEO_EXTENSION])
+  dest_file = File.join(dest_dir, video + VIDEO_EXTENSION)
   unless File.exists?(dest_file)
     FileUtils.mkdir_p(dest_dir)
     unless system('mimms', '--quiet', streaming_url, dest_file)

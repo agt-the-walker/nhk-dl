@@ -32,17 +32,20 @@ private
   end
 
   def handle_section_tab(section_name)
-    page.links_with(:href => %r{/chapter\d+.html}).each do |link|
-      handle_video(section_name, link)
+    page.links.each do |link|
+      if link.href =~ %r{/chapter(\d+).html}
+        handle_video(section_name, $1.to_i, link)
+      end
     end
   end
 
-  def handle_video(section_name, link)
+  def handle_video(section_name, episode, link)
     transact {
       # the following regexp comes from http://www.ruby-forum.com/topic/860528
       video_name = link.text.sub(/\A[[:space:]]*(.*?)[[:space:]]*\z/, '\1')
       link.click
-      puts section_name, video_name, page.link_with(:href => /\.asx$/).href, ''
+      puts section_name, '%02d - %s' % [episode, video_name],
+           page.link_with(:href => /\.asx$/).href, ''
     }
   end
 end
