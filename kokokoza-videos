@@ -44,8 +44,10 @@ private
       # the following regexp comes from http://www.ruby-forum.com/topic/860528
       video_name = link.text.sub(/\A[[:space:]]*(.*?)[[:space:]]*\z/, '\1')
       link.click
-      puts section_name, '%02d - %s' % [episode, video_name],
-           page.link_with(:href => /\.asx$/).href, ''
+      if video_link = page.link_with(:href => /\.asx$/)
+        puts section_name, '%02d - %s' % [episode, video_name],
+             video_link.href, ''
+      end
     }
   end
 end
