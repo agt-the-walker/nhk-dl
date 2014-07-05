@@ -19,6 +19,9 @@ class Kokokoza < Mechanize
 private
 
   def handle_section(link)
+    if OPT_DEBUG
+      STDERR.puts "Section: #{link.uri}"
+    end
     transact {
       section_name = link.text
       link.click
@@ -32,6 +35,9 @@ private
   end
 
   def handle_section_tab(section_name)
+    if OPT_DEBUG
+      STDERR.puts "Section tab: #{page.uri}"
+    end
     page.links.each do |link|
       if link.href =~ %r{/chapter(\d+).html}
         handle_video(section_name, $1.to_i, link)
@@ -40,6 +46,9 @@ private
   end
 
   def handle_video(section_name, episode, link)
+    if OPT_DEBUG
+      STDERR.puts "Video page: #{link.uri}"
+    end
     transact {
       # the following regexp comes from http://www.ruby-forum.com/topic/860528
       video_name = link.text.sub(/\A[[:space:]]*(.*?)[[:space:]]*\z/, '\1')
@@ -50,6 +59,13 @@ private
       end
     }
   end
+end
+
+##### Argument parsing
+
+OPT_DEBUG = ARGV[0] == '--debug' && ARGV.shift
+if ARGV.size > 0
+  abort "Usage: #$0 [--debug]"
 end
 
 ##### Main program
