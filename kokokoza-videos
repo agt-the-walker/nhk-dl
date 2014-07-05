@@ -2,6 +2,7 @@
 # encoding: UTF-8
 
 require 'mechanize'
+require 'set'
 
 ##### Configuration
 
@@ -25,24 +26,18 @@ private
     transact {
       section_name = link.text
       link.click
-      handle_section_tab(section_name)
 
-      page.links_with(:href => %r{^index\d+\.html}).each do |link|
-        link.click
-        handle_section_tab(section_name)
+      visited_episodes = Set.new
+      page.links.each do |link|
+        if link.href =~ %r{/chapter(\d+).html}
+          episode = $1.to_i
+          unless visited_episodes.include?(episode)
+            handle_video(section_name, episode, link)
+            visited_episodes << episode
+          end
+        end
       end
     }
-  end
-
-  def handle_section_tab(section_name)
-    if OPT_DEBUG
-      STDERR.puts "Section tab: #{page.uri}"
-    end
-    page.links.each do |link|
-      if link.href =~ %r{/chapter(\d+).html}
-        handle_video(section_name, $1.to_i, link)
-      end
-    end
   end
 
   def handle_video(section_name, episode, link)
