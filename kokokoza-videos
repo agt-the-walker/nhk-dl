@@ -11,7 +11,7 @@ KOKOKOZA_URL = 'http://www.nhk.or.jp/kokokoza/library/index.html'
 
 class Kokokoza < Mechanize
   def videos
-    get(KOKOKOZA_URL).links_with(:href => %r{/tv/}).each do |link|
+    get(KOKOKOZA_URL).links_with(:href => %r{^tv/}).each do |link|
       handle_section(link)
     end
   end
